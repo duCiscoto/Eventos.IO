@@ -13,7 +13,9 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <vc:summary />
+
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="OrganizadorId" />
             <div class="form-group">
@@ -66,6 +68,11 @@
                 <input asp-for="NomeEmpresa" class="form-control" />
                 <span asp-validation-for="NomeEmpresa" class="text-danger"></span>
             </div>
+
+            <div id="EnderecoForm">
+                Deve ter endereço aqui!
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -94,23 +101,6 @@
             var notificacao = ViewBag.RetornoPost.ToString().Split(',');
 
             <script>
-                toastr.options = {
-                    "closeButton": false,
-                    "debug": true,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-top-right",
-                    "preventDuplicates": true,
-                    "onclick": null,
-                    "showDuration": "300",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-
                 toastr["@notificacao[0]"]("@notificacao[1]");
             </script>
         }

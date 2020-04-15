@@ -40,6 +40,7 @@ namespace Eventos.IO.Application.ViewModels
 
         [Display(Name = "Valor")]
         [DisplayFormat(DataFormatString = "{0:C}")]
+        [Required(ErrorMessage = "O Valor é requerido.")]
         [DataType(DataType.Currency, ErrorMessage = "Moeda em formato inválido")]
         public decimal Valor { get; set; }
 

@@ -1,25 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AutoMapper;
+using Eventos.IO.Infra.CrossCutting.Bus;
+using Eventos.IO.Infra.CrossCutting.Identity.Data;
+using Eventos.IO.Infra.CrossCutting.IoC;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Eventos.IO.Site.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Eventos.IO.Application.Interfaces;
-using Eventos.IO.Application.Services;
-using Microsoft.AspNetCore.Http;
-using Eventos.IO.Infra.CrossCutting.Bus;
-using Eventos.IO.Infra.CrossCutting.IoC;
-using AutoMapper;
-using Eventos.IO.Domain.Interfaces;
-using Eventos.IO.Site.Models;
 
 namespace Eventos.IO.Site
 {
@@ -44,8 +34,6 @@ namespace Eventos.IO.Site
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddAutoMapper(typeof(Startup));
-
-            services.AddScoped<IUser, AspNetUser>();
 
             RegisterServices(services, Configuration);
         }

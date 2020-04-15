@@ -52,6 +52,7 @@ namespace Eventos.IO.Domain.Eventos
         public Guid? EnderecoId { get; private set; }
         public Guid OrganizadorId { get; private set; }
 
+        
         // EF - Propriedades de navegação
         public virtual Categoria Categoria { get; private set; }
         public virtual Endereco Endereco { get; private set; }
