@@ -2,11 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
-namespace Eventos.IO.Site.Models
+namespace Eventos.IO.Infra.CrossCutting.Identity.Models
 {
     public class AspNetUser : IUser
     {

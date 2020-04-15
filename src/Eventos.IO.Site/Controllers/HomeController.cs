@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Eventos.IO.Infra.CrossCutting.Identity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Eventos.IO.Site.Models;
+using System.Diagnostics;
 
 namespace Eventos.IO.Site.Controllers
 {
