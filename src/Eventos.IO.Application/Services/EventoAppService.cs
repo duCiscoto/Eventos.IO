@@ -6,7 +6,6 @@ using Eventos.IO.Domain.Eventos.Commands;
 using Eventos.IO.Domain.Eventos.Repository;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Eventos.IO.Application.Services
 {
@@ -16,7 +15,10 @@ namespace Eventos.IO.Application.Services
         private readonly IMapper _mapper;
         private readonly IEventoRepository _eventoRepository;
 
-        public EventoAppService(IBus bus, IMapper mapper, IEventoRepository eventoRepository)
+        public EventoAppService(
+            IBus bus,
+            IMapper mapper,
+            IEventoRepository eventoRepository)
         {
             _bus = bus;
             _mapper = mapper;
