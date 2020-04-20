@@ -1,4 +1,5 @@
 using AutoMapper;
+using Eventos.IO.Application.AutoMapper;
 using Eventos.IO.Infra.CrossCutting.Bus;
 using Eventos.IO.Infra.CrossCutting.Identity.Data;
 using Eventos.IO.Infra.CrossCutting.IoC;
@@ -33,7 +34,12 @@ namespace Eventos.IO.Site
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddAutoMapper(typeof(Startup));
+
+            services.AddAutoMapper(opt =>
+            {
+                opt.AddProfile(new DomainToViewModelMappingProfile());
+                opt.AddProfile(new ViewModelToDomainMappingProfile());
+            });
 
             RegisterServices(services, Configuration);
         }
