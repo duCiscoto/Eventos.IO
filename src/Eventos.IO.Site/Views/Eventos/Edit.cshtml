@@ -69,19 +69,16 @@
                 <span asp-validation-for="NomeEmpresa" class="text-danger"></span>
             </div>
 
-            <div id="EnderecoForm">
-                Deve ter endereço aqui!
-            </div>
-
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Atualizar Evento" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-info">Voltar para a Lista</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div id="EnderecoForm">
+    @Html.Partial("_DetalhesEndereco")
 </div>
 
 @section Scripts {
