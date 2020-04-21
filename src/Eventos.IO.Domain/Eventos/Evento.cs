@@ -124,25 +124,23 @@ namespace Eventos.IO.Domain.Eventos
         private void ValidarData()
         {
             RuleFor(d => d.DataInicio)
-                .GreaterThan(d => d.DataFim)
-                .WithMessage("A data de início deve ser menor que a data do final do evento!");
+                .GreaterThan(d => DateTime.Now)
+                .WithMessage("A data de início não deve ser menor que a data atual!");
 
             RuleFor(d => d.DataInicio)
-                .LessThan(DateTime.Now)
-                .WithMessage("A data de início não deve ser menor que a data atual!");
+                .LessThan(d => d.DataFim)
+                .WithMessage("A data de início deve ser menor que a data do final do evento!");
         }
 
         private void ValidarLocal()
         {
             if (Online)
                 RuleFor(c => c.Endereco)
-                    .NotNull().When(c => c.Online)
-                    .WithMessage("O evento não deve possuir endereço se for on-line!");
+                    .Null().WithMessage("O evento não deve possuir endereço se for on-line!");
 
             if (!Online)
                 RuleFor(c => c.Endereco)
-                    .NotNull().When(c => c.Online == false)
-                    .WithMessage("O evento deve possuir um endereço!");
+                    .NotNull().WithMessage("O evento deve possuir um endereço!");
         }
 
         private void ValidarNomeEmpresa()

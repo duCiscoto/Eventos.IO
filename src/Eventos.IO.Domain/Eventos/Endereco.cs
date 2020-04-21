@@ -18,7 +18,15 @@ namespace Eventos.IO.Domain.Eventos
         // EF - Propriedade de Navegação
         public virtual Evento Evento { get; private set; }
 
-        public Endereco(Guid id, string logradouro, string numero, string complemento, string bairro, string cep, string cidade, string estado, Guid? eventoId)
+        public Endereco(Guid id,
+            string logradouro,
+            string numero,
+            string complemento,
+            string bairro,
+            string cep,
+            string cidade,
+            string estado,
+            Guid? eventoId)
         {
             Id = id;
             Logradouro = logradouro;
