@@ -67,14 +67,14 @@
                     @Html.DisplayFor(modelItem => item.Online)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
-                        <span class="glyphicon glyphicon-pencil"></span>
+                    <a type="button" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>Editar
                     </a> |
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-search"></span>
+                    <a type="button" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-search"></span>Detalhes
                     </a> |
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-trash"></span>
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Excluir
                     </a>
                 </td>
             </tr>
