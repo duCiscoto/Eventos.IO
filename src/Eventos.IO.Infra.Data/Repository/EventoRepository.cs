@@ -38,7 +38,7 @@ namespace Eventos.IO.Infra.Data.Repository
 
         public Endereco ObterEnderecoPorId(Guid id)
         {
-            var sql = @"SELECT *FROM Enderecos E " +
+            var sql = @"SELECT * FROM Enderecos E " +
                 "WHERE E.Id = @uid";
 
             var endereco = Db.Database.GetDbConnection().Query<Endereco>(sql, new { uid = id });

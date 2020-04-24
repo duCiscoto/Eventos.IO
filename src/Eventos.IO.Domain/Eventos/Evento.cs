@@ -25,14 +25,6 @@ namespace Eventos.IO.Domain.Eventos
             Valor = valor;
             Online = online;
             NomeEmpresa = nomeEmpresa;
-
-            //ErrosValidacao = new Dictionary<string, string>();
-
-            //if (nome.Length < 3)
-            //    ErrosValidacao.Add("Nome", "O nome do evento deve ter mais de 3 caracteres!");
-
-            //if (gratuito && valor != 0)
-            //    ErrosValidacao.Add("Valor", "O evento não pode ter valor e ser gratuito!");
         }
 
         private Evento() { }
@@ -164,12 +156,6 @@ namespace Eventos.IO.Domain.Eventos
             }
         }
 
-        //public Dictionary<string, string> ErrosValidacao { get; set; }
-
-        //public bool EhValido()
-        //{
-        //    return !ErrosValidacao.Any();
-        //}
         #endregion
 
         public static class EventoFactory
