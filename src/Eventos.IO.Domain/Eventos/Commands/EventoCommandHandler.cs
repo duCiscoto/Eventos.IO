@@ -40,6 +40,7 @@ namespace Eventos.IO.Domain.Eventos.Commands
                 message.Endereco.Cidade,
                 message.Endereco.Estado,
                 message.Endereco.EventoId.Value);
+            
             var evento = Evento.EventoFactory.NovoEventoCompleto(
                 message.Id,
                 message.Nome,

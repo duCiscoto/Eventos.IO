@@ -28,7 +28,7 @@ namespace Eventos.IO.Application.ViewModels
         public string DescricaoLonga { get; set; }
 
         [Display(Name = "Início do Evento")]
-        [Required(ErrorMessage ="A data é requerida.")]
+        [Required(ErrorMessage = "A data é requerida.")]
         public DateTime DataInicio { get; set; }
 
         [Display(Name = "Fim do Evento")]

@@ -39,44 +39,45 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @item.DataInicio.ToString("d")
-            </td>
-            <td>
-                @item.DataFim.ToString("d")
-            </td>
-            <td>
-                @{ 
-                    if (item.Gratuito)
-                    {
-                        @Html.DisplayName("Gratuito")
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @item.DataInicio.ToString("d")
+                </td>
+                <td>
+                    @item.DataFim.ToString("d")
+                </td>
+                <td>
+                    @{
+                        if (item.Gratuito)
+                        {
+                            @Html.DisplayName("Gratuito")
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Valor)
+                        }
                     }
-                    else
-                    {
-                        @Html.DisplayFor(modelItem => item.Valor)
-                    }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Online)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn-warning">
-                    <span class="glyphicon glyphicon-pencil"></span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Online)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span>
                     </a> |
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn-primary">
-                    <span class="glyphicon glyphicon-search"></span>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-search"></span>
                     </a> |
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </a>
-            </td>
-        </tr>
-}
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
