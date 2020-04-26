@@ -112,13 +112,13 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Endereco.Estado" class="control-label"></label>
-                    <input asp-for="Endereco.Estado" class="form-control" />
+                    @Html.Partial("_Estados")
                     <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Registrar" class="btn btn-success" />
+                <input type="submit" id="btnSubmit" value="Registrar" class="btn btn-success" />
                 <a asp-action="Index" class="btn btn-info">Voltar para a lista</a>
             </div>
         </form>
@@ -144,6 +144,13 @@
             <script>
                 toastr["@notificacao[0]"]("@notificacao[1]");
             </script>
+
+            if (@notificacao[0] == "success")
+            {
+                <script>
+                    $("#btnSubmit").prop("disabled", true);
+                </script>
+            }
         }
     }
 }

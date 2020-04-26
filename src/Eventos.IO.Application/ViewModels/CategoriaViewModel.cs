@@ -14,7 +14,7 @@ namespace Eventos.IO.Application.ViewModels
             return new SelectList(ListarCategorias(), "Id", "Nome");
         }
 
-        private List<CategoriaViewModel> ListarCategorias()
+        public List<CategoriaViewModel> ListarCategorias()
         {
             var categoriaLIst = new List<CategoriaViewModel>()
             {
