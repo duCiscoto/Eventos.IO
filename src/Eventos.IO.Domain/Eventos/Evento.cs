@@ -27,8 +27,6 @@ namespace Eventos.IO.Domain.Eventos
             NomeEmpresa = nomeEmpresa;
         }
 
-        private Evento() { }
-
         public string Nome { get; private set; }
         public string DescricaoCurta { get; private set; }
         public string DescricaoLonga { get; private set; }
@@ -44,11 +42,12 @@ namespace Eventos.IO.Domain.Eventos
         public Guid? EnderecoId { get; private set; }
         public Guid OrganizadorId { get; private set; }
 
-        
         // EF - Propriedades de navegação
         public virtual Categoria Categoria { get; private set; }
         public virtual Endereco Endereco { get; private set; }
         public virtual Organizador Organizador { get; private set; }
+
+        private Evento() { }
 
         public void AtribuirEndereco(Endereco endereco)
         {
@@ -188,6 +187,7 @@ namespace Eventos.IO.Domain.Eventos
                     Online = online,
                     NomeEmpresa = nomeEmpresa,
                     Endereco = endereco,
+                    EnderecoId = endereco.Id,
                     CategoriaId = categoriaId
                 };
 

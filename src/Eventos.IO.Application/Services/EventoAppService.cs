@@ -84,5 +84,10 @@ namespace Eventos.IO.Application.Services
         {
             return _mapper.Map<EnderecoViewModel>(_eventoRepository.ObterEnderecoPorId(id));
         }
+
+        public EnderecoViewModel ObterEnderecoPorEventoId(Guid idEvento)
+        {
+            return _mapper.Map<EnderecoViewModel>(_eventoRepository.ObterEnderecoPorEventoId(idEvento));
+        }
     }
 }

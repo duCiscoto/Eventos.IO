@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Eventos.IO.Infra.Data.Repository
 {
@@ -44,6 +43,16 @@ namespace Eventos.IO.Infra.Data.Repository
             var endereco = Db.Database.GetDbConnection().Query<Endereco>(sql, new { uid = id });
 
             return endereco.SingleOrDefault();
+        }
+
+        public Endereco ObterEnderecoPorEventoId(Guid idEvento)
+        {
+            var sql = @"SELECT * FROM Enderecos E " +
+                "WHERE E.EventoId = @uid";
+
+            var endereco = Db.Database.GetDbConnection().QuerySingle<Endereco>(sql, new { uid = idEvento });
+
+            return endereco;
         }
 
         public IEnumerable<Evento> ObterEventoPorOrganizador(Guid organizadorId)

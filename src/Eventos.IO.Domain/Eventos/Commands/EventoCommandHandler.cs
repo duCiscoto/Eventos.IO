@@ -36,7 +36,8 @@ namespace Eventos.IO.Domain.Eventos.Commands
 
         public void Handle(RegistrarEventoCommand message)
         {
-            var endereco = new Endereco(message.Endereco.Id,
+            var endereco = new Endereco(
+                message.Endereco.Id,
                 message.Endereco.Logradouro,
                 message.Endereco.Numero,
                 message.Endereco.Complemento,
@@ -82,7 +83,7 @@ namespace Eventos.IO.Domain.Eventos.Commands
                     evento.Valor,
                     evento.Online,
                     evento.NomeEmpresa
-                    ));
+                ));
             }
         }
 
@@ -116,7 +117,7 @@ namespace Eventos.IO.Domain.Eventos.Commands
                 message.CategoriaId
                 );
 
-            if(!evento.Online && evento.Endereco == null)
+            if (!evento.Online && evento.Endereco == null)
             {
                 _bus.RaiseEvent(new DomainNotification(message.MessageType, "Não é possível atualizar o eventos em informar o endereço"));
                 return;
@@ -186,7 +187,7 @@ namespace Eventos.IO.Domain.Eventos.Commands
         {
             var evento = _eventoRepository.ObterPorId(id);
 
-            if (evento != null)
+            if (!evento.Equals(null))
                 return true;
 
             _bus.RaiseEvent(new DomainNotification(messageType, "Evento não encontrado."));

@@ -35,6 +35,12 @@ namespace Eventos.IO.Site
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("PodeLerEventos", policy => policy.RequireClaim("Eventos", "Ler")); // adiciona uma política de acesso
+                options.AddPolicy("PodeGravar", policy => policy.RequireClaim("Eventos", "Gravar"));
+            });
+
             services.AddAutoMapper(opt =>
             {
                 opt.AddProfile(new DomainToViewModelMappingProfile());
