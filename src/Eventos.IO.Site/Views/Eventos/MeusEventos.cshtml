@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div class="pull-left">
             <a asp-action="Create" class="btn btn-primary">
-                <span title="Novo Evento" class="glyphicon glyphicon-plus-sign"></span> Novo Evento
+                <span title="Novo Evento" class="fa fa-plus-sign"></span> Novo Evento
             </a>
         </div>
     </div>
@@ -68,13 +68,13 @@
                 </td>
                 <td>
                     <a type="button" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
-                        <span class="glyphicon glyphicon-pencil"></span>Editar
+                        <span class="fa fa-pencil"></span>
                     </a> |
                     <a type="button" asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-search"></span>Detalhes
+                        <span class="fa fa-search"></span>
                     </a> |
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Excluir
+                        <span class="fa fa-trash" aria-hidden="true"></span>
                     </a>
                 </td>
             </tr>

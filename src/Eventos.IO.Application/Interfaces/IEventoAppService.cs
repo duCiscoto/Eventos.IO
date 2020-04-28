@@ -16,5 +16,6 @@ namespace Eventos.IO.Application.Interfaces
         void AdicionarEndereco(EnderecoViewModel enderecoViewModel);
         void AtualizarEndereco(EnderecoViewModel enderecoViewModel);
         EnderecoViewModel ObterEnderecoPorId(Guid guid);
+        EnderecoViewModel ObterEnderecoPorEventoId(Guid idEvento);
     }
 }

@@ -20,19 +20,23 @@ namespace Eventos.IO.Site.Controllers
         }
 
         // GET: Eventos
+        [Route("")]
+        [Route("proximos-eventos")]
         public IActionResult Index()
         {
             return View(_eventoAppService.ObterTodos());
         }
 
         // GET: Meus Eventos
-        [Authorize]
+        [Route("meus-eventos")]
+        [Authorize(Policy = "PodeLerEventos")]
         public IActionResult MeusEventos()
         {
             return View(_eventoAppService.ObterEventoPorOrganizador(OrganizadorId));
         }
 
         // GET: Eventos/Details/5
+        [Route("dados-do-evento/{id:guid}")]
         public IActionResult Details(Guid? id)
         {
             if (id == null)
@@ -51,16 +55,18 @@ namespace Eventos.IO.Site.Controllers
         }
 
         // GET: Eventos/Create
-        [Authorize]
+        [Route("novo-evento")]
+        [Authorize(Policy = "PodeGravar")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Eventos/Create
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("novo-evento")]
+        [Authorize(Policy = "PodeGravar")]
         public IActionResult Create(EventoViewModel eventoViewModel)
         {
             if (!ModelState.IsValid)
@@ -75,7 +81,8 @@ namespace Eventos.IO.Site.Controllers
         }
 
         // GET: Eventos/Edit/5
-        [Authorize]
+        [Route("editar-evento/{id:guid}")]
+        [Authorize(Policy = "PodeGravar")]
         public IActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -84,6 +91,8 @@ namespace Eventos.IO.Site.Controllers
             }
 
             var eventoViewModel = _eventoAppService.ObterPorId(id.Value);
+
+            eventoViewModel.Endereco = _eventoAppService.ObterEnderecoPorEventoId(eventoViewModel.Id);
 
             if (eventoViewModel == null)
                 return NotFound();
@@ -97,9 +106,10 @@ namespace Eventos.IO.Site.Controllers
         }
 
         // POST: Eventos/Edit/5
-        [Authorize]
+        [Authorize(Policy = "PodeGravar")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("editar-evento/{id:guid}")]
         public IActionResult Edit(EventoViewModel eventoViewModel)
         {
             if (ValidarAutoridadeEvento(eventoViewModel))
@@ -128,7 +138,8 @@ namespace Eventos.IO.Site.Controllers
         }
 
         // GET: Eventos/Delete/5
-        [Authorize]
+        [Authorize(Policy = "PodeGravar")]
+        [Route("excluir-evento/{id:guid}")]
         public IActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -148,9 +159,10 @@ namespace Eventos.IO.Site.Controllers
         }
 
         // POST: Eventos/Delete/5
-        [Authorize]
+        [Authorize(Policy = "PodeGravar")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Route("excluir-evento/{id:guid}")]
         public IActionResult DeleteConfirmed(Guid id)
         {
             if (ValidarAutoridadeEvento(_eventoAppService.ObterPorId(id)))
@@ -163,6 +175,8 @@ namespace Eventos.IO.Site.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Policy = "PodeGravar")]
+        [Route("incluir-endereco/{id:guid}")]
         public IActionResult IncluirEndereco(Guid? id)
         {
             if (id == null)
@@ -173,18 +187,10 @@ namespace Eventos.IO.Site.Controllers
             return PartialView("_IncluirEndereco", eventoViewModel);
         }
 
-        public IActionResult AtualizarrEndereco(Guid? id)
-        {
-            if (id == null)
-                return NotFound();
-
-            var eventoViewModel = _eventoAppService.ObterPorId(id.Value);
-
-            return PartialView("_AtualizarEndereco", eventoViewModel);
-        }
-
+        [Authorize(Policy = "PodeGravar")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("incluir-endereco/{id:guid}")]
         public IActionResult IncluirEndereco(EventoViewModel eventoViewModel)
         {
             ModelState.Clear(); // Limpa o ModelState para validar apenas o que está no servidor
@@ -200,8 +206,22 @@ namespace Eventos.IO.Site.Controllers
             return PartialView("_IncluirEndereco", eventoViewModel);
         }
 
+        [Authorize(Policy = "PodeGravar")]
+        [Route("atualizar-endereco/{id:guid}")]
+        public IActionResult AtualizarrEndereco(Guid? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var eventoViewModel = _eventoAppService.ObterPorId(id.Value);
+
+            return PartialView("_AtualizarEndereco", eventoViewModel);
+        }
+
+        [Authorize(Policy = "PodeGravar")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("atualizar-endereco/{id:guid}")]
         public IActionResult AtualizarEndereco(EventoViewModel eventoViewModel)
         {
             ModelState.Clear(); // Limpa o ModelState para validar apenas o que está no servidor
@@ -217,6 +237,7 @@ namespace Eventos.IO.Site.Controllers
             return PartialView("_AtualizarEndereco", eventoViewModel);
         }
 
+        [Route("listar-endereco/{id:guid}")]
         public IActionResult ObterEndereco(Guid id)
         {
             return PartialView("_DetalhesEndereco", _eventoAppService.ObterEnderecoPorId(id));
