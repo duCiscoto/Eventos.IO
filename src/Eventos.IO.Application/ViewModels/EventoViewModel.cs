@@ -21,9 +21,11 @@ namespace Eventos.IO.Application.ViewModels
         [Display(Name = "Nome do Evento")]
         public string Nome { get; set; }
 
+        [Required(ErrorMessage = "A Descrição Curta é requerida.")]
         [Display(Name = "Descrição curta do Evento")]
         public string DescricaoCurta { get; set; }
 
+        [Required(ErrorMessage = "A Descrição Longa é requerida.")]
         [Display(Name = "Descrição longa do Evento")]
         public string DescricaoLonga { get; set; }
 
@@ -44,7 +46,7 @@ namespace Eventos.IO.Application.ViewModels
         [DataType(DataType.Currency, ErrorMessage = "Moeda em formato inválido")]
         public decimal Valor { get; set; }
 
-        [Display(Name = "Será on-line?")]
+        [Display(Name = "On-line")]
         public bool Online { get; set; }
 
         [Display(Name = "Empresa / Grupo Organizador")]

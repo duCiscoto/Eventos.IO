@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div class="pull-left">
             <a asp-action="Create" class="btn btn-primary">
-                <span title="Novo Evento" class="fa fa-plus-sign"></span> Novo Evento
+                <span title="Novo Evento" class="fa fa-plus"></span> Novo Evento
             </a>
         </div>
     </div>
@@ -64,7 +64,23 @@
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Online)
+                    @{
+                        if (item.Online)
+                        {
+                            @Html.DisplayName("Virtual")
+                        }
+                        else
+                        {
+                            if (item.Endereco != null)
+                            {
+                                @Html.DisplayFor(modelItem => item.Endereco.Cidade)
+                            }
+                            else
+                            {
+                                @Html.DisplayName("Indisponível")
+                            }
+                        }
+                    }
                 </td>
                 <td>
                     <a type="button" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">

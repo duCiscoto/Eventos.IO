@@ -5,6 +5,18 @@
     <UserSecretsId>EventosSecrets</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Eventos.IO.Application.pdb" />
+    <None Remove="Eventos.IO.Domain.Core.pdb" />
+    <None Remove="Eventos.IO.Domain.pdb" />
+    <None Remove="Eventos.IO.Infra.CrossCutting.Bus.pdb" />
+    <None Remove="Eventos.IO.Infra.CrossCutting.Identity.pdb" />
+    <None Remove="Eventos.IO.Infra.CrossCutting.IoC.pdb" />
+    <None Remove="Eventos.IO.Infra.Data.pdb" />
+    <None Remove="Eventos.IO.Site.pdb" />
+    <None Remove="Eventos.IO.Site.Views.pdb" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
@@ -18,6 +30,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="3.1.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
 

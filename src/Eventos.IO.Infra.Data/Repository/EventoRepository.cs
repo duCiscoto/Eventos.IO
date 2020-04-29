@@ -20,9 +20,11 @@ namespace Eventos.IO.Infra.Data.Repository
         {
             var sql = "SELECT * FROM EVENTOS E " +
                 "WHERE E.EXCLUIDO = 0 " +
-                "ORDER BY E.DATAFIM DESC";
-            
-            return Db.Database.GetDbConnection().Query<Evento>(sql);
+                "ORDER BY E.DATAINICIO ASC";
+
+            var colecao = Db.Database.GetDbConnection().Query<Evento>(sql);
+
+            return ProcessaConsultaEventos(colecao);
         }
 
         public void AdicionarEndereco(Endereco endereco)
@@ -60,9 +62,11 @@ namespace Eventos.IO.Infra.Data.Repository
             var sql = "SELECT * FROM EVENTOS E " +
                 "WHERE E.EXCLUIDO = 0 " +
                 "AND E.ORGANIZADORID = @oid " +
-                "ORDER BY E.DATAFIM DESC";
+                "ORDER BY E.DATAINICIO ASC";
 
-            return Db.Database.GetDbConnection().Query<Evento>(sql, new { oid = organizadorId });
+            var colecao = Db.Database.GetDbConnection().Query<Evento>(sql, new { oid = organizadorId });
+
+            return ProcessaConsultaEventos(colecao);
         }
 
         public override Evento ObterPorId(Guid id)
@@ -75,12 +79,12 @@ namespace Eventos.IO.Infra.Data.Repository
             var evento = Db.Database.GetDbConnection().Query<Evento, Endereco, Evento>(sql,
                 (e, en) =>
                 {
-                    if (en != null)
+                    if (!en.Equals(null))
                         e.AtribuirEndereco(en);
                     return e;
                 }, new { uid = id });
 
-            return evento.FirstOrDefault();
+            return ProcessaConsultaEventos(evento).FirstOrDefault();
         }
 
         public override void Remover(Guid id)
@@ -88,6 +92,22 @@ namespace Eventos.IO.Infra.Data.Repository
             var evento = ObterPorId(id);
             evento.ExcluirEvento();
             Atualizar(evento);
+        }
+
+        // Adiciona referência de endereço aos Eventos que a tiver
+        private IEnumerable<Evento> ProcessaConsultaEventos(IEnumerable<Evento> listagem)
+        {
+            var colecaoEventos = new List<Evento>();
+
+            foreach (var evento in listagem)
+            {
+                if (!evento.EnderecoId.Equals(null))
+                    evento.AtribuirEndereco(ObterEnderecoPorEventoId(evento.Id));
+
+                colecaoEventos.Add(evento);
+            }
+
+            return colecaoEventos;
         }
     }
 }

@@ -75,13 +75,16 @@
             <tr>
                 <th>
                     <a asp-action="IncluirEndereco" asp-route-id="@Model.Id" data-modal="" class="btn btn-info">
-                        <span title="Incluir Endereco" class="fa fa-plus-sign"></span> Adicionar Endereço
+                        <span title="Incluir Endereco" class="fa fa-plus"></span> Adicionar Endereço
                     </a>
                 </th>
             </tr>
         </table>
     }
 </div>
-<script>
-    AjaxModal();
-</script>
+
+@section Scripts {
+    <script>
+        AjaxModal();
+    </script>
+}

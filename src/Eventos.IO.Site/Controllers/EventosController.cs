@@ -172,7 +172,7 @@ namespace Eventos.IO.Site.Controllers
 
             _eventoAppService.Excluir(id);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("MeusEventos");
         }
 
         [Authorize(Policy = "PodeGravar")]
@@ -208,7 +208,7 @@ namespace Eventos.IO.Site.Controllers
 
         [Authorize(Policy = "PodeGravar")]
         [Route("atualizar-endereco/{id:guid}")]
-        public IActionResult AtualizarrEndereco(Guid? id)
+        public IActionResult AtualizarEndereco(Guid? id)
         {
             if (id == null)
                 return NotFound();
@@ -224,6 +224,7 @@ namespace Eventos.IO.Site.Controllers
         [Route("atualizar-endereco/{id:guid}")]
         public IActionResult AtualizarEndereco(EventoViewModel eventoViewModel)
         {
+            //Model
             ModelState.Clear(); // Limpa o ModelState para validar apenas o que está no servidor
             eventoViewModel.Endereco.EventoId = eventoViewModel.Id;
             _eventoAppService.AtualizarEndereco(eventoViewModel.Endereco);
