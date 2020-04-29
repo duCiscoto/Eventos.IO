@@ -2,7 +2,6 @@
 using Eventos.IO.Domain.Core.Bus;
 using Eventos.IO.Domain.Core.Events;
 using Eventos.IO.Domain.Core.Notifications;
-using Eventos.IO.Domain.Eventos.Commands;
 using Eventos.IO.Domain.Eventos.Events;
 using Eventos.IO.Domain.Eventos.Repository;
 using Eventos.IO.Domain.Interfaces;
@@ -95,9 +94,10 @@ namespace Eventos.IO.Domain.Eventos.Commands
             if (!EventoExistente(message.Id, message.MessageType))
                 return;
 
-            if (eventoAtual.OrganizadorId != _user.GetUserId()) // Não posso Editar um evento que não seja meu
+            // Verifica se o evento que estou editando é meu mesmo
+            if (eventoAtual.OrganizadorId != _user.GetUserId())
             {
-                _bus.RaiseEvent(new DomainNotification(message.MessageType, "Evento não pertence ao Organizador"));
+                _bus.RaiseEvent(new DomainNotification(message.MessageType, "Evento não pertence ao Organizador!"));
                 return;
             }
 
@@ -119,7 +119,7 @@ namespace Eventos.IO.Domain.Eventos.Commands
 
             if (!evento.Online && evento.Endereco.Equals(null))
             {
-                _bus.RaiseEvent(new DomainNotification(message.MessageType, "Não é possível atualizar o evento sem informar o endereço"));
+                _bus.RaiseEvent(new DomainNotification(message.MessageType, "Não é possível atualizar o evento sem informar o endereço."));
                 return;
             }
 
@@ -159,7 +159,7 @@ namespace Eventos.IO.Domain.Eventos.Commands
             // Validações de negócio
             if (eventoAtual.OrganizadorId != _user.GetUserId()) // Não posso excluir um evento que não seja meu
             {
-                _bus.RaiseEvent(new DomainNotification(message.MessageType, "Evento não pertence ao Organizador"));
+                _bus.RaiseEvent(new DomainNotification(message.MessageType, "Evento não pertence ao Organizador!"));
                 return;
             }
 

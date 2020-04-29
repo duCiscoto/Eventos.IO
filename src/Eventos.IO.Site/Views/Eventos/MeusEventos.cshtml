@@ -71,7 +71,14 @@
                         }
                         else
                         {
-                            @Html.DisplayFor(modelItem => item.Endereco.Cidade)
+                            if (item.Endereco != null)
+                            {
+                                @Html.DisplayFor(modelItem => item.Endereco.Cidade)
+                            }
+                            else
+                            {
+                                @Html.DisplayName("Indisponível")
+                            }
                         }
                     }
                 </td>
