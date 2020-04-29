@@ -72,7 +72,7 @@ namespace Eventos.IO.Infra.Data.Repository
             var sql = "SELECT * FROM EVENTOS E " +
                 "WHERE E.EXCLUIDO = 0 " +
                 "AND E.ORGANIZADORID = @oid " +
-                "ORDER BY E.DATAFIM DESC";
+                "ORDER BY E.DATAINICIO ASC";
 
             return Db.Database.GetDbConnection().Query<Evento>(sql, new { oid = organizadorId });
         }

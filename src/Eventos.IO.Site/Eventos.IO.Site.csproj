@@ -5,6 +5,18 @@
     <UserSecretsId>EventosSecrets</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Eventos.IO.Application.pdb" />
+    <None Remove="Eventos.IO.Domain.Core.pdb" />
+    <None Remove="Eventos.IO.Domain.pdb" />
+    <None Remove="Eventos.IO.Infra.CrossCutting.Bus.pdb" />
+    <None Remove="Eventos.IO.Infra.CrossCutting.Identity.pdb" />
+    <None Remove="Eventos.IO.Infra.CrossCutting.IoC.pdb" />
+    <None Remove="Eventos.IO.Infra.Data.pdb" />
+    <None Remove="Eventos.IO.Site.pdb" />
+    <None Remove="Eventos.IO.Site.Views.pdb" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
