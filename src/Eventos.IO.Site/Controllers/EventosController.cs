@@ -208,7 +208,7 @@ namespace Eventos.IO.Site.Controllers
 
         [Authorize(Policy = "PodeGravar")]
         [Route("atualizar-endereco/{id:guid}")]
-        public IActionResult AtualizarrEndereco(Guid? id)
+        public IActionResult AtualizarEndereco(Guid? id)
         {
             if (id == null)
                 return NotFound();

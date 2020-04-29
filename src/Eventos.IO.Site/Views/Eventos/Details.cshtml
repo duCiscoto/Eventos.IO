@@ -18,12 +18,12 @@
         <hr />
         <br />
         <div class="row">
-            <b>Quando:</b><br />
+            <b>Quando: </b> 
             @Model.DataInicio.ToString("d") até @Model.DataFim.ToString("d")
         </div>
         <br />
         <div class="row">
-            <b>Valor:</b><br />
+            <b>Valor: </b> 
             @{ 
                 if (Model.Gratuito)
                 {
@@ -37,7 +37,7 @@
         </div>
         <br />
         <div class="row">
-            <b>Ripo de Evento:</b><br />
+            <b>Tipo de Evento: </b> 
             @{ 
                 var categoria = new CategoriaViewModel().ListarCategorias().FirstOrDefault(c => c.Id == Model.CategoriaId);
                 @Html.Raw(categoria.Nome)
@@ -45,27 +45,34 @@
         </div>
         <br />
         <div class="row">
-            <b>Organizado por:</b><br />
+            <b>Organizado por: </b> 
             @Html.DisplayFor(modelItem => Model.NomeEmpresa)
         </div>
         <br />
         <div class="row">
-            <b>Onde?</b>
-            @{ 
-                if (Model.Online)
-                {
-                    @Html.DisplayName("Evento Online")
+            <b>Local: </b>
+                @{
+                    if (Model.Online)
+                    {
+                        @Html.DisplayName(" Evento Online")
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => Model.Endereco.Cidade)
+                        @*<iframe width="600" height="450" frameborder="0" style="border:0" scr="https://www.google.com/maps/embed/v1/place?q=Model.Endereco.ToString()&kew='chave da minha api de mapa do google'" allowfullscreen></iframe>*@
+                    }
                 }
-                else
-                {
-                    @Html.DisplayFor(modelItem => Model.Endereco.Cidade)
-                    @*<iframe width="600" height="450" frameborder="0" style="border:0" scr="https://www.google.com/maps/embed/v1/place?q=Model.Endereco.ToString()&kew='chave da minha api de mapa do google'" allowfullscreen></iframe>*@
-                }
-            }
         </div>
     </div>
 
     <div>
+        <br />
         <a href="javascript:history.go(-1)" class="btn btn-info">Voltar</a>
     </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
 </div>

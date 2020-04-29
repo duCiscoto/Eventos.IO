@@ -117,9 +117,9 @@ namespace Eventos.IO.Domain.Eventos.Commands
                 message.CategoriaId
                 );
 
-            if (!evento.Online && evento.Endereco == null)
+            if (!evento.Online && evento.Endereco.Equals(null))
             {
-                _bus.RaiseEvent(new DomainNotification(message.MessageType, "Não é possível atualizar o eventos em informar o endereço"));
+                _bus.RaiseEvent(new DomainNotification(message.MessageType, "Não é possível atualizar o evento sem informar o endereço"));
                 return;
             }
 

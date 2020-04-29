@@ -44,7 +44,7 @@ namespace Eventos.IO.Application.ViewModels
         [DataType(DataType.Currency, ErrorMessage = "Moeda em formato inválido")]
         public decimal Valor { get; set; }
 
-        [Display(Name = "Será on-line?")]
+        [Display(Name = "Local")]
         public bool Online { get; set; }
 
         [Display(Name = "Empresa / Grupo Organizador")]

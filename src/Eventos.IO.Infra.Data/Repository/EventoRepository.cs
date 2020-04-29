@@ -20,9 +20,21 @@ namespace Eventos.IO.Infra.Data.Repository
         {
             var sql = "SELECT * FROM EVENTOS E " +
                 "WHERE E.EXCLUIDO = 0 " +
-                "ORDER BY E.DATAFIM DESC";
-            
-            return Db.Database.GetDbConnection().Query<Evento>(sql);
+                "ORDER BY E.DATAINICIO ASC";
+
+            var dados = Db.Database.GetDbConnection().Query<Evento>(sql);
+
+            var colecaoEventos = new List<Evento>();
+
+            foreach (var evento in dados)
+            {
+                if (!evento.EnderecoId.Equals(null))
+                    evento.AtribuirEndereco(ObterEnderecoPorEventoId(evento.Id));
+
+                colecaoEventos.Add(evento);
+            }
+
+            return colecaoEventos;
         }
 
         public void AdicionarEndereco(Endereco endereco)
@@ -75,7 +87,7 @@ namespace Eventos.IO.Infra.Data.Repository
             var evento = Db.Database.GetDbConnection().Query<Evento, Endereco, Evento>(sql,
                 (e, en) =>
                 {
-                    if (en != null)
+                    if (!en.Equals(null))
                         e.AtribuirEndereco(en);
                     return e;
                 }, new { uid = id });
